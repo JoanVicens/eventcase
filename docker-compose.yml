@@ -16,17 +16,22 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8080:5000
 
   server:
-    build:
-      context: ./docker/php
-      args:
-        php_version: 7.3-apache
+    image: php:7
+    command: -S 0.0.0.0:80 /app/index.php
     container_name: php_server
     ports:
       - "80:80"
     volumes:
-      - ./www:/var/www/html
+      - .:/app
     links:
       - db
+
+  composer:
+    restart: 'no'
+    image: composer
+    command: install
+    volumes:
+      - .:/app
