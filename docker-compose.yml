@@ -35,3 +35,10 @@ services:
     command: install
     volumes:
       - .:/app
+
+  composer_updater:
+    restart: 'no'
+    image: composer
+    command: update
+    volumes:
+      - .:/app
