@@ -1,3 +1,6 @@
+
+version: '3'
+
 services:
 
   db:
@@ -7,30 +10,46 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_USER: admin
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
+    volumes:
+      - ./sql:/data/application/
+      - ./db:/var/lib/mysql
+    command: --init-file /data/application/init.sql
     restart: always
+    networks:
+      - backend
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:5000
+      - 5000:8080
+    networks:
+      - backend
 
   server:
-    image: php:7
+    build: ./docker/php
     command: -S 0.0.0.0:80 /app/index.php
     container_name: php_server
     environment:
       RENT_DURATION_IN_DAYS: ${RENT_DURATION_IN_DAYS}
       RENT_BASE_PRICE: ${RENT_BASE_PRICE}
       RENT_PER_DAY: ${RENT_PER_DAY}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "80:80"
     volumes:
       - .:/app
     links:
+      - db
+    networks:
+      - backend
+    depends_on: 
       - db
 
   composer:
@@ -39,6 +58,8 @@ services:
     command: install
     volumes:
       - .:/app
+    networks:
+      - backend
 
   composer_updater:
     restart: 'no'
@@ -46,3 +67,8 @@ services:
     command: update
     volumes:
       - .:/app
+    networks:
+      - backend
+
+networks:
+  backend:
