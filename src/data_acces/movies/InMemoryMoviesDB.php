@@ -15,11 +15,19 @@ class InMemoryMoviesDB implements IMoviesDA {
         ];
     }
 
-    public function retrive($id): Movie
+    public function retrive(int $id): Movie
     {
         if(!array_key_exists($id, $this->movies))
             throw new Exception("Movie does not exist");
 
         return $this->movies[$id];
+    }
+
+    public function update(int $id, Movie $movie): void
+    {
+        if (!array_key_exists($id, $this->movies))
+            throw new Exception("Movie does not exist");
+
+        $this->movies[$id] = $movie;
     }
 }

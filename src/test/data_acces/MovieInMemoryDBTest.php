@@ -31,4 +31,33 @@ final class MovieInMemoryDBTest extends TestCase
         
         $db->retrive(999);
     }
+
+    public function testUpdateMovie(): void
+    {
+        $db = new InMemoryMoviesDB();
+        $movieId = 1;
+
+        $lifeOfBrian = new Movie("Monty Python's Life of Brian", new DateTime("2000-12-23"), 3, 1);
+
+        $db->update($movieId, $lifeOfBrian);
+
+        $this->assertEquals(
+            $db->retrive($movieId),
+            $lifeOfBrian
+        );
+    }
+
+    public function testUpdateAnInvalidMovie(): void
+    {
+        $db = new InMemoryMoviesDB();
+        $movieId = 2;
+
+        $lifeOfBrian = new Movie("Monty Python's Life of Brian", new DateTime("2000-12-23"), 3, 1);
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Movie does not exist");
+
+        $db->update($movieId, $lifeOfBrian);
+    }
+
 }
