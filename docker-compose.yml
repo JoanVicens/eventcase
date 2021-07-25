@@ -22,6 +22,10 @@ services:
     image: php:7
     command: -S 0.0.0.0:80 /app/index.php
     container_name: php_server
+    environment:
+      RENT_DURATION_IN_DAYS: ${RENT_DURATION_IN_DAYS}
+      RENT_BASE_PRICE: ${RENT_BASE_PRICE}
+      RENT_PER_DAY: ${RENT_PER_DAY}
     ports:
       - "80:80"
     volumes:
