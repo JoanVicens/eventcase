@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-
-require_once(realpath(dirname(__FILE__) . '/../../actions/rent/RentInDaysPriceCalculator.php'));
-require_once(realpath(dirname(__FILE__) . '/../../classes/Movie.php'));
-
 final class CalculateRentPriceTest extends TestCase
 {
 

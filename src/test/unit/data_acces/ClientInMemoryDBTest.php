@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-
-require_once(realpath(dirname(__FILE__) . '/../../data_acces/clients/InMemoryClientDB.php'));
-require_once(realpath(dirname(__FILE__) . '/../../classes/Client.php'));
-
 final class ClientInMemoryDBTest extends TestCase
 {
     public function testClientIsStoredWhenDBIsEmtpy(): void
