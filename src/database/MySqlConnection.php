@@ -19,14 +19,14 @@ class MySqlConnection
 
     public function connect()
     {
-
         try {
             $this->con = new PDO("mysql:host=db;port=3306;dbname={$this->database}", $this->user, $this->password);
             $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $ex) {
-            echo $ex;
+        } catch (PDOException $ex) { 
+            return [false, $ex->getMessage()];
         }
-        return $this->con != NULL;
+
+        return [$this->con != NULL, NULL];
     }
 
     public function getConnector()

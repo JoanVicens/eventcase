@@ -4,10 +4,18 @@ require_once 'vendor/autoload.php';
 
 use Pecee\SimpleRouter\SimpleRouter;
 
+# DATABASE CONNECTION
+$dbConnection = new MySqlConnection(getenv('MYSQL_DATABASE'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'));
+list($connected, $msg) = $dbConnection->connect();
+if(!$connected)
+    return SimpleRouter::response()->httpCode(500)->json([
+        'message' => $msg
+    ]);
+
 # DATABASE
-$moviesDA = new InMemoryMoviesDB();
-$clientDA = new InMemoryClientDB();
-$rentalDA = new InMemoryRentalDB();
+$moviesDA = new MySqlMovieDA($dbConnection->getConnector());
+$clientDA = new MySqlClientDA($dbConnection->getConnector());
+$rentalDA = new MySqlRentalDA($dbConnection->getConnector());
 
 # RENT MOVIES
 $costCalculator = new RentInDaysPriceCalculator(getenv('RENT_BASE_PRICE'), getenv('RENT_PER_DAY'));
