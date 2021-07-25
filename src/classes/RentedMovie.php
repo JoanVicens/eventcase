@@ -4,12 +4,12 @@ class RentedMovie
 {
     public Movie $movie;
     public DateTime $rentEndDate;
-    public float $cost;
+    public float $price;
 
-    public function __construct(Movie $movie, DateTime $rentEndDate, float $cost)
+    public function __construct(Movie $movie, DateTime $rentEndDate, float $price)
     {
         $this->movie = $movie;
         $this->rentEndDate = $rentEndDate;
-        $this->cost = $cost;
+        $this->price = $price;
     }
 }
