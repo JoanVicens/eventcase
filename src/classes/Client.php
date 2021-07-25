@@ -5,15 +5,15 @@ class Client
     public string $name;
     public string $phone;
     public string $shippingAddress;
-    public string $email;
-    public DateTime $birthDate;
+    public ?string $email;
+    public ?DateTime $birthDate;
 
     public function __construct(
         string $name,
         string $phone,
         string $shippingAddress,
-        string $email,
-        DateTime $birthDate
+        ?string $email,
+        ?DateTime $birthDate
     )
     {
         $this->name = $name;
