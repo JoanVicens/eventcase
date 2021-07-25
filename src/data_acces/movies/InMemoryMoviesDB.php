@@ -4,7 +4,7 @@ require_once 'IMovieDA.php';
 require_once(realpath(dirname(__FILE__).'/../../classes/Movie.php'));
 
 
-class InMemoryMoviesDA implements IMoviesDA {
+class InMemoryMoviesDB implements IMoviesDA {
 
     private $movies;
 
