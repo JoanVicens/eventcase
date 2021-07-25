@@ -27,9 +27,10 @@ class MovieRentHandler implements IMovieRenter
     public function tryRent(int $movieId, Client $client): RentMovieResponse
     {
         $movie = $this->movieDA->retrive($movieId);
-        $movie->removeOneCopy($movieId);
-
+        
         $price = $this->priceCalculator->calculate($movie, $this->durationInDays);
+        
+        $movie->removeOneCopy($movieId);
         
         $clientId = $this->clientDA->store($client);
         $rental = new Rental($movieId, $clientId, new DateTime('NOW'), $this->durationInDays, $price);
