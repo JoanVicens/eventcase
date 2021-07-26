@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Client` (
 CREATE TABLE IF NOT EXISTS `Movie` (
   `MovieId` int NOT NULL AUTO_INCREMENT,
   `Title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `LaunchYear` datetime NOT NULL,
+  `LaunchDate` datetime NOT NULL,
   `AvaliableCopies` int NOT NULL,
   PRIMARY KEY (`MovieId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;

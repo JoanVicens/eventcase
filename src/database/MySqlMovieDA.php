@@ -14,7 +14,7 @@ class MySqlMovieDA implements IMoviesDA
 
     public function retrive(int $id): Movie
     {
-        $query = "SELECT Title, LaunchYear, TotalCopies, AvaliableCopies FROM Movie WHERE MovieId = :id";
+        $query = "SELECT Title, LaunchDate, TotalCopies, AvaliableCopies FROM Movie WHERE MovieId = :id";
 
         $preparedQuery = $this->movies->prepare($query);
 
@@ -30,13 +30,13 @@ class MySqlMovieDA implements IMoviesDA
 
     public function update(int $id, Movie $movie): void
     {
-        $query = "UPDATE Movie SET Title = :title, LaunchYear = :launchYear, TotalCopies = :totalCopies, AvaliableCopies = :avaliableCopies WHERE MovieId = :movieId";
+        $query = "UPDATE Movie SET Title = :title, LaunchDate = :launchDate, TotalCopies = :totalCopies, AvaliableCopies = :avaliableCopies WHERE MovieId = :movieId";
 
         $preparedQuery = $this->movies->prepare($query);
 
         $preparedQuery->execute([
             ':title' => $movie->title,
-            ':launchYear' => $movie->launchYear->format("Y-m-d"),
+            ':launchDate' => $movie->launchDate->format("Y-m-d"),
             ':totalCopies' => $movie->totalCopies,
             ':avaliableCopies' => $movie->avaliableCopies,
             ':movieId' => $id
