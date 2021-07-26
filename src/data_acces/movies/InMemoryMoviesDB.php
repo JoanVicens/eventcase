@@ -23,6 +23,19 @@ class InMemoryMoviesDB implements IMoviesDA {
         return $this->movies[$id];
     }
 
+    public function retriveAvaliable(): array
+    {
+        $avaliableMovies = [];
+        
+        foreach($this->movies as $id => $movie)
+        {
+            if($movie->avaliableCopies >= 0)
+                $avaliableMovies[$id] = $movie;
+        }
+
+        return $avaliableMovies;
+    }
+
     public function update(int $id, Movie $movie): void
     {
         if (!array_key_exists($id, $this->movies))

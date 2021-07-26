@@ -39,6 +39,11 @@ final class MovieRentHandlerTest extends TestCase
             {
                 return;
             }
+
+            public function retriveAvaliable(): array
+            {
+                throw new Exception("Method not implemented");
+            }
         };
 
         $clientDA = new MockedClientDB();
@@ -73,6 +78,11 @@ final class MovieRentHandlerTest extends TestCase
             {
                 return;
             }
+
+            public function retriveAvaliable(): array
+            {
+                throw new Exception("Method not implemented");
+            }
         };
 
         $clientDA = new MockedClientDB();
@@ -86,8 +96,7 @@ final class MovieRentHandlerTest extends TestCase
 
         $client = new Client("Jaydon", "440-328-6222", "7503 Alberto Plains", "Violette_Swift63@yahoo.com", new DateTime("2021-07-25T14:57:51.721Z"));
 
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage("Movie does not exist");
+        $this->expectNotToPerformAssertions();
 
         $movieRenterHandler->tryRent(1, $client);
     }

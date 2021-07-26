@@ -28,6 +28,26 @@ class MySqlMovieDA implements IMoviesDA
     }
 
 
+    public function retriveAvaliable(): array
+    {
+        $query = "SELECT MovieId, Title, LaunchDate, TotalCopies, AvaliableCopies FROM Movie WHERE AvaliableCopies > 0";
+
+        $preparedQuery = $this->movies->prepare($query);
+
+        $preparedQuery->execute();
+
+        $result = $preparedQuery->fetchAll(PDO::FETCH_NUM);
+
+        $avaliableMovies = [];
+
+        foreach ($result as $dbMovie) {
+            $avaliableMovies[$dbMovie[0]] = new Movie($dbMovie[1], new DateTime($dbMovie[2]), $dbMovie[3], $dbMovie[4]);
+        }
+
+        return $avaliableMovies;
+    }
+
+
     public function update(int $id, Movie $movie): void
     {
         $query = "UPDATE Movie SET Title = :title, LaunchDate = :launchDate, TotalCopies = :totalCopies, AvaliableCopies = :avaliableCopies WHERE MovieId = :movieId";
