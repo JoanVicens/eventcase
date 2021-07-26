@@ -11,10 +11,22 @@ class MovieController
         $this->movieHandler = $movieHandler;
     }
 
-    public function listMoviesAvaliable()
+    public function listMoviesMatching($filter)
     {
         try {
-            $movies = $this->movieHandler->retriveAvaliable();
+
+            switch(trim(strtoupper($filter)))
+            {
+                case MovieFilters::Avaliable:
+                    $movies = $this->movieHandler->retriveAvaliable();
+                    break;
+
+                default: 
+                    return SimpleRouter::response()->httpCode(400)->json([
+                        'message' => 'Invalid filter'
+                    ]);
+            }
+
 
             return SimpleRouter::response()->json($movies);
 

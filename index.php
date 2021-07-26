@@ -33,8 +33,8 @@ SimpleRouter::post('/rent/{id}', function($id) {
     return $GLOBALS['rentController'] -> rent($id);
 });
 
-SimpleRouter::get('/movies/avaliable', function() {
-    return $GLOBALS['movieController'] -> listMoviesAvaliable();
+SimpleRouter::get('/movies/{filter}', function($filter) {
+    return $GLOBALS['movieController'] ->listMoviesMatching($filter);
 });
 
 
