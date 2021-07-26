@@ -1,6 +1,5 @@
 <?php
 
-require_once 'vendor/autoload.php';
 
 class MockedMoviesDB implements IMoviesDA
 {
@@ -13,8 +12,6 @@ class MockedMoviesDB implements IMoviesDA
 
     public function retrive(int $id): Movie
     {
-        $totalCopies = $this->faker->randomDigit();
-        
         return new Movie(
             $this->faker->streetName(),
             $this->faker->dateTime(),
