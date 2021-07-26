@@ -48,10 +48,7 @@ CREATE TABLE IF NOT EXISTS `Rental` (
 -- *************************     DATA      **********************************************************
 -- ==================================================================================================
 
-INSERT INTO `Client` (`
-ClientId`,
-`Name
-`, `Phone`, `ShippingAddress`, `email`, `birthDate`) VALUES
+INSERT INTO `Client` (`ClientId`,`Name`, `Phone`, `ShippingAddress`, `email`, `birthDate`) VALUES
 (40,	'Micaela',	'661-407-6212',	'37995 Schmeler Springs',	'Berry93@hotmail.com',	NULL),
 (41,	'Micaela',	'661-407-6212',	'37995 Schmeler Springs',	'Berry93@hotmail.com',	NULL),
 (42,	'Stephania',	'529-372-9695',	'5721 Auer Row',	'Marion4@hotmail.com',	NULL),
@@ -86,10 +83,7 @@ UPDATE `ClientId` = VALUES
 (`email`), `birthDate` = VALUES
 (`birthDate`);
 
-INSERT INTO `Movie` (`
-MovieId`,
-`Title
-`, `LaunchDate`, `TotalCopies`, `AvaliableCopies`) VALUES
+INSERT INTO `Movie` (`MovieId`,`Title`, `LaunchDate`, `TotalCopies`, `AvaliableCopies`) VALUES
 (1,	'Sharknado',	'2013-07-11 00:00:00',	10,	4),
 (2,	'Harry Potter and the Prisoner of Azkaban',	'2004-10-01 00:00:00',	20,	18),
 (3,	'Harry Potter and the Goblet of Fire',	'2005-01-01 00:00:00',	40,	13),
@@ -103,10 +97,7 @@ UPDATE `MovieId` = VALUES
 (`TotalCopies`), `AvaliableCopies` = VALUES
 (`AvaliableCopies`);
 
-INSERT INTO `Rental` (`
-RentailId`,
-`MovieId
-`, `ClientId`, `StartDate`, `NumberOfDaysRented`, `Price`) VALUES
+INSERT INTO `Rental` (`RentailId`,`MovieId`, `ClientId`, `StartDate`, `NumberOfDaysRented`, `Price`) VALUES
 (1,	1,	50,	'2021-07-25 00:00:00',	7,	33.5),
 (2,	1,	51,	'2021-07-25 00:00:00',	7,	35.2857),
 (3,	1,	52,	'2021-07-25 00:00:00',	7,	37.6667),
