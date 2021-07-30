@@ -5,90 +5,59 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Rent <?php echo $title ?></title>
+	<title>DVD Renter</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<style>
-		body {
-			margin: 0;
-			padding: 0;
-		}
-
-		main {
-			padding: 10px 30px;
-		}
-
-		form {
-
-			padding: 10px;
-
-		}
-
-		input {
-
-			display: block;
-
-			margin-bottom: 15px;
-
-		}
-
 		.list-grid {
 			display: grid;
 			gap: 2rem;
 			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		}
 
-		.card {
-			border: 2px solid teal;
-			background-color: lightsteelblue;
-			border-radius: 5px;
-			padding: 5px 15px;
-			text-align: center;
+		.movie-info {
 			display: flex;
 			flex-direction: column;
+			min-height: 200px;
 		}
 
-		.card p {
-			margin: 8px 0px 16px 0px;
-			display: inline;
+		.movie-info a.btn {
+			margin-top: auto;
 		}
 
-		a.button {
-			-webkit-appearance: button;
-			-moz-appearance: button;
-			appearance: button;
-			background-color: teal;
+		#result-cards {
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#result-cards .card {
+			width: 700px;
+		}
+
+		#result-cards a.btn {
+			margin-bottom: 30px;
+			margin-left: auto;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+
+		footer {
+			background-color: black;
 			color: white;
+			text-align: center;
+			bottom: 0;
+			width: 100%;
+			position: fixed;
+			padding: 4px 0;
+			font-size: 16px;
 			font-weight: bold;
-			margin: auto 0 16px 0;
-			padding: 10px;
-			border-radius: 5px;
-			text-decoration: none;
 		}
 	</style>
 </head>
 
 <body>
-	<!-- <main> -->
-
-	<!-- <h2>Your contact inforamtion</h2>
-
-		<form action="rent/$movieId" method='post'>
-
-			<label for="name">Name</label>
-			<input type="text" name="name" placeholder="Phil" required>
-
-			<label for="phone">Contact Phone</lable>
-				<input type="text" name="phone" placeholder="123-45-678" required>
-
-				<label for="shippingAddress">Where to Shipping Addres</labal>
-					<input type="text" name="shippingAddress" placeholder="5019 Leverton Cove Road" required>
-
-					<label for="email">Contact e-mail</label>
-					<input type="email" name="email" placeholder="email@address.com">
-
-					<label for="birthDate">Date of birth</label>
-					<input type="date" name="birthDate">
-
-					<input type="submit" value="Rent it!"></input>
-		</form>
-	</main>
-</body> -->
