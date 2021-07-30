@@ -3,6 +3,7 @@
 require_once 'vendor/autoload.php';
 
 use Pecee\SimpleRouter\SimpleRouter;
+use Pecee\Http\Request;
 
 # DATABASE CONNECTION
 $dbConnection = new MySqlConnection(getenv('MYSQL_DATABASE'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'));
@@ -29,9 +30,9 @@ $rentController = new RentController($movieRenterHandler);
 $movieController = new MovieController($movieHandler);
 
 # ROUTES
-SimpleRouter::post('/rent/{id}', function ($id) {
-    return $GLOBALS['rentController']->rentMovie($id);
-});
+// SimpleRouter::post('/rent/{id}', function ($id) {
+//     return $GLOBALS['rentController']->rentMovie($id);
+// });
 
 SimpleRouter::post('/rent', function() {
 
@@ -45,13 +46,20 @@ SimpleRouter::get('/rent', function () {
 
 });
 
-// SimpleRouter::get('/movies/{filter}', function ($filter) {
-//     return $GLOBALS['movieController']->listMoviesMatching($filter);
-// });
-
 SimpleRouter::get('/movies/{filter?}', function ($filter='avaliable') {
 
     require_once(realpath(dirname(__FILE__) . '/src/views/display-movies.php'));
+});
+
+
+SimpleRouter::error(function (Request $request, \Exception $exception) {
+
+    $result = $exception;
+
+    require_once(realpath(dirname(__FILE__) . '/src/views/head.php'));
+    require_once(realpath(dirname(__FILE__) . '/src/views/error.php'));
+
+    die();
 });
 
 SimpleRouter::start();
