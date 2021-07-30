@@ -1,8 +1,13 @@
 <?php
 
-$resp = $GLOBALS['movieController']->listMoviesMatching($filter);
+$result = $GLOBALS['movieController']->listMoviesMatching($filter);
 
 require_once 'head.php';
+
+if ($result instanceof Exception) {
+    require_once 'error.php';
+    die();
+}
 
 ?>
 
@@ -11,7 +16,19 @@ require_once 'head.php';
 
     <div class="list-grid mt-4">
         <?php
-        foreach ($resp->getMovies() as $movie) {
+
+        $movies = $result->getMovies();
+
+        if(count($movies) == 0)
+        {
+        ?>
+            <div class="alert alert-primary" role="alert">
+                There are no avaliable movies!
+            </div>
+        <?php
+        }
+
+        foreach ($result->getMovies() as $movie) {
         ?>
             <div class="card">
                 <div class="card-body movie-info">

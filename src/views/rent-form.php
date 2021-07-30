@@ -43,7 +43,8 @@ require_once 'head.php';
         <small class="text-danger">Required *</small>
 
         <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Rent it!</input>
+            <button type="submit" class="btn btn-primary">Rent it!</button>
+            <a class="btn btn-outline-danger" href="/movies">Nevermind</a>
         </div>
     </form>
 </main>

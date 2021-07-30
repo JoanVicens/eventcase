@@ -20,9 +20,7 @@ class RentController
             
         } catch (Exception $e) {
 
-            return SimpleRouter::response()->httpCode(400)->json([
-                'message' => $e->getMessage()
-            ]);
+            return $e;
         }
     }
 
@@ -50,9 +48,7 @@ class RentController
 
         } catch (Exception $e) {
 
-            return SimpleRouter::response()->httpCode(400)->json([
-                'message' => $e->getMessage()
-            ]);
+            return $e;
         }
     }
 }

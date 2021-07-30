@@ -22,13 +22,10 @@ class MovieController
                     break;
 
                 default: 
-                    return SimpleRouter::response()->httpCode(400)->json([
-                        'message' => 'Invalid filter'
-                    ]);
+                    return new Exception('Invalid filter');
             }
 
             return $movies;
-            //return SimpleRouter::response()->json($movies);
 
         } catch (Exception $e) {
             

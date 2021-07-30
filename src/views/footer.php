@@ -1,5 +1,5 @@
 <footer>
-    eventcase techinal test project
+    eventcase technical test project
 </footer>
 </body>
 

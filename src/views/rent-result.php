@@ -2,12 +2,18 @@
 
 $result = $GLOBALS['rentController']->rentMovies();
 
+
 require_once 'head.php';
+
+if($result instanceof Exception) {
+    require_once 'error.php';
+    die();
+}
 ?>
 
 <main class="container pt-4">
     <h1>Rent Invoice</h1>
-
+    
     <div id="result-cards">
         <a class="btn btn-outline-dark" href="/movies">Back to movies</a>
 
