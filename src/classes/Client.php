@@ -18,10 +18,10 @@ class Client
     {
 
         if (!preg_match("/^[a-zA-Z-' ]*$/", $name))
-            throw new Exception("Only letters and white space allowed");
+            throw new Exception('Invalid name: only letters and white space allowed');
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-            throw new Exception("Invalid email");
+        if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new Exception('Invalid email');
 
         $this->name = $name;
         $this->phone = $phone;
