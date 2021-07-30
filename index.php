@@ -7,7 +7,7 @@ use Pecee\SimpleRouter\SimpleRouter;
 # DATABASE CONNECTION
 $dbConnection = new MySqlConnection(getenv('MYSQL_DATABASE'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'));
 list($connected, $msg) = $dbConnection->connect();
-if(!$connected)
+if (!$connected)
     return SimpleRouter::response()->httpCode(500)->json([
         'message' => $msg
     ]);
@@ -29,13 +29,29 @@ $rentController = new RentController($movieRenterHandler);
 $movieController = new MovieController($movieHandler);
 
 # ROUTES
-SimpleRouter::post('/rent/{id}', function($id) {
-    return $GLOBALS['rentController'] -> rent($id);
+SimpleRouter::post('/rent/{id}', function ($id) {
+    return $GLOBALS['rentController']->rentMovie($id);
 });
 
-SimpleRouter::get('/movies/{filter}', function($filter) {
-    return $GLOBALS['movieController'] ->listMoviesMatching($filter);
+SimpleRouter::post('/rent', function() {
+
+    require_once(realpath(dirname(__FILE__) . '/src/views/rent-result.php'));
+
 });
 
+SimpleRouter::get('/rent', function () {
+
+    require_once(realpath(dirname(__FILE__) . '/src/views/rent-form.php'));
+
+});
+
+// SimpleRouter::get('/movies/{filter}', function ($filter) {
+//     return $GLOBALS['movieController']->listMoviesMatching($filter);
+// });
+
+SimpleRouter::get('/movies/{filter?}', function ($filter='avaliable') {
+
+    require_once(realpath(dirname(__FILE__) . '/src/views/display-movies.php'));
+});
 
 SimpleRouter::start();
