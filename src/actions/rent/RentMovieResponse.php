@@ -13,6 +13,21 @@ class RentMovieResponse implements JsonSerializable
         $this->cost = $cost;
     }
 
+    public function getCost(): float
+    {
+        return $this->cost;
+    }
+
+    public function getMovie(): Movie
+    {
+        return $this->movie;
+    }
+
+    public function getRentEndDate():  DateTime
+    {
+        return $this->rentEndDate;
+    }
+
     public function jsonSerialize()
     {
         return [

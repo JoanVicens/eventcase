@@ -21,6 +21,11 @@ class ListMoviesResponse implements JsonSerializable
         }
     }
 
+    public function getMovies(): array
+    {
+        return $this->movies;
+    }
+
     public function hasMovies(): bool
     {
         return !empty($this->movies);
