@@ -16,6 +16,13 @@ class Client
         ?DateTime $birthDate
     )
     {
+
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $name))
+            throw new Exception("Only letters and white space allowed");
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            throw new Exception("Invalid email");
+
         $this->name = $name;
         $this->phone = $phone;
         $this->shippingAddress = $shippingAddress;
