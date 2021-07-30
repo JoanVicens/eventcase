@@ -27,8 +27,8 @@ class MovieController
                     ]);
             }
 
-
-            return SimpleRouter::response()->json($movies);
+            return $movies;
+            //return SimpleRouter::response()->json($movies);
 
         } catch (Exception $e) {
             

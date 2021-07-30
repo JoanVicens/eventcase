@@ -6,13 +6,13 @@ class ClientTranslators {
 
     static public function translateFromArray($source): Client
     {   
-        $birthDate = $source->birth_date == NULL ? NULL : new DateTime($source->birth_date);
+        $birthDate = empty($source['birth_date']) ? NULL : new DateTime($source['birth_date']);
 
         return new Client(
-            $source->name,
-            $source->phone,
-            $source->shipping_address,
-            $source->email,
+            $source['name'],
+            $source['phone'],
+            $source['shippingAddress'],
+            $source['email'],
             $birthDate
         );
     }

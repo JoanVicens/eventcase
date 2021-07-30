@@ -10,18 +10,43 @@ class RentController
         $this->movieRenter = $movieRenter;
     }
 
-    public function rent(int $movieId)
+    public function rentMovie(int $movieId)
     {
         try {
 
-            $json = file_get_contents('php://input');
-            $client = json_decode($json);
+            $translatedClient = ClientTranslators::translateFromArray($_POST);
 
-            $translatedClient = ClientTranslators::translateFromArray($client);
-
-            $movieRented = $this->movieRenter->tryRent($movieId, $translatedClient);
+            return $this->movieRenter->tryRent($movieId, $translatedClient);
             
-            return SimpleRouter::response()->json($movieRented);
+        } catch (Exception $e) {
+
+            return SimpleRouter::response()->httpCode(400)->json([
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function rentMovies()
+    {
+        try {
+            $moviesId = $_POST["moviesId"];
+            $translatedClient = ClientTranslators::translateFromArray($_POST);
+            
+            $responses = [];
+
+            foreach($moviesId as $id)
+            {
+                array_push($responses, $this->movieRenter->tryRent($id, $translatedClient));
+            }
+
+            $totalCost = array_reduce($responses, function ($carry, $rentMoiveResponse) {
+                return $carry + $rentMoiveResponse->getCost();
+            });
+
+            return [
+                'movies' => $responses,
+                'totalCost' => $totalCost
+            ];
 
         } catch (Exception $e) {
 
